@@ -245,5 +245,133 @@ public class frontend extends JFrame {
             }
         }
     }
+    public void removeContestant()
+    {
+
+        if ("Contestant".equals(currentUser.getRole()))
+        {
+            JOptionPane.showMessageDialog(this, "Contestants are not allowed to remove Contestants.", "Access Denied", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int selectedRow = ContestantTable.getSelectedRow();
+        if (selectedRow != -1)
+        {
+            int ContestantNumber = (int) ContestantTable.getValueAt(selectedRow, 0);
+            model.removeContestant(ContestantNumber);
+            updateContestantTable();
+        }
+    }
+
+    public void generateReport()
+    {
+        if ("Contestant".equals(currentUser.getRole()))
+        {
+            detailsTextArea.setText("Access Denied: Contestants are not allowed to generate reports.");
+            return;
+        }
+
+        int selectedRow = ContestantTable.getSelectedRow();
+        if (selectedRow != -1)
+        {
+            int ContestantNumber = (int) ContestantTable.getValueAt(selectedRow, 0);
+            Contestant contestant = model.getContestantByNumber(ContestantNumber);
+            if (contestant != null)
+            {
+                detailsTextArea.setText(contestant.getFullDetails());
+            }
+        }
+    }
+
+    public void shortReport()
+    {
+        StringBuilder sreport = new StringBuilder();
+        Contestant winner = model.getWinner();
+        if (winner != null)
+        {
+            sreport.append("Contestant with the highest overall score:\n");
+            sreport.append(String.format("Contestant Number: %d, Name: %s, Overall Score: %.2f%n",
+                    winner.getContestantNumber(), winner.getName(), winner.getOverallScore()));
+            sreport.append("\n");
+        }
+        detailsTextArea.setText(sreport.toString());
+    }
+
+    public void addContestantFromForm()
+    {
+
+        JTextField nameField = new JTextField();
+        JTextField ageField = new JTextField();
+        JTextField genderField = new JTextField();
+        JTextField countryField = new JTextField();
+        JTextField scoresField = new JTextField();
+
+        // Create dropdown lists for Level and Category
+        JComboBox<Contestant.Level> levelComboBox = new JComboBox<>(Contestant.Level.values());
+        JComboBox<Contestant.Category> categoryComboBox = new JComboBox<>(Contestant.Category.values());
+
+        // Create a panel for the form with labels and input fields
+        JPanel formPanel = new JPanel(new GridLayout(8, 2));
+        formPanel.add(new JLabel("Name:"));
+        formPanel.add(nameField);
+        formPanel.add(new JLabel("Age:"));
+        formPanel.add(ageField);
+        formPanel.add(new JLabel("Gender:"));
+        formPanel.add(genderField);
+        formPanel.add(new JLabel("Country:"));
+        formPanel.add(countryField);
+        formPanel.add(new JLabel("Level:"));
+        formPanel.add(levelComboBox);  // Use dropdown list
+        formPanel.add(new JLabel("Category:"));
+        formPanel.add(categoryComboBox);  // Use dropdown list
+        formPanel.add(new JLabel("Scores (comma-separated, e.g., 1,2,3,4,5):"));
+        formPanel.add(scoresField);
+
+        int result = JOptionPane.showConfirmDialog(
+                this, formPanel, "Add Contestant", JOptionPane.OK_CANCEL_OPTION);
+
+        if (result == JOptionPane.OK_OPTION)
+        {
+            // Get values from input fields and dropdown lists
+            String name = nameField.getText();
+            String ageText = ageField.getText();
+            String gender = genderField.getText();
+            String country = countryField.getText();
+            String scoresText = scoresField.getText();
+
+            // Validate age is a non-empty integer
+            if (!isNonEmptyInteger(ageText))
+            {
+                JOptionPane.showMessageDialog(this, "Age must be a valid non-empty integer.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            int age = Integer.parseInt(ageText);
+
+            // Validate name is a non-empty string containing only letters
+            if (!isNonEmptyStringWithLetters(name))
+            {
+                JOptionPane.showMessageDialog(this, "Name must be a non-empty string containing only letters.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Validate country is a non-empty string containing only letters
+            if (!isNonEmptyStringWithLetters(country))
+            {
+                JOptionPane.showMessageDialog(this, "Country must be a non-empty string containing only letters.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            int[] scores = Arrays.stream(scoresText.split(","))
+                    .mapToInt(Integer::parseInt)
+                    .toArray();
+
+            Contestant.Level selectedLevel = (Contestant.Level) levelComboBox.getSelectedItem();
+            Contestant.Category selectedCategory = (Contestant.Category) categoryComboBox.getSelectedItem();
+
+            int ContestantNumber = model.getAllContestants().size() + 1;
+            model.addContestant(ContestantNumber, name, selectedCategory, selectedLevel, scores, age, gender, country);
+            updateContestantTable();
+        }
+    }
 
 }
