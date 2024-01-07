@@ -92,7 +92,8 @@ public class frontend extends JFrame {
 
         updateContestantTable();
     }
-    public void searchContestant() {
+    public void searchContestant()
+    {
         try
         {
             int ContestantNumberToSearch = Integer.parseInt(searchField.getText());
@@ -109,6 +110,31 @@ public class frontend extends JFrame {
         catch (NumberFormatException ex)
         {
             JOptionPane.showMessageDialog(this, "Please enter a valid Contestant number.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    public void setupButtonVisibility()
+    {
+        if ("staff".equals(currentUser.getRole()))
+        {
+            // Staff can access all buttons
+            updateButton.setEnabled(true);
+            editButton.setEnabled(true);
+            removeButton.setEnabled(true);
+            reportButton.setEnabled(true);
+            shortButton.setEnabled(true);
+            addContestantButton.setEnabled(true);
+            searchButton.setEnabled(true);
+        }
+        else if ("Contestant".equals(currentUser.getRole()))
+        {
+            // Contestants can only search for their scores
+            updateButton.setEnabled(false);
+            editButton.setEnabled(false);
+            removeButton.setEnabled(false);
+            reportButton.setEnabled(false);
+            shortButton.setEnabled(false);
+            addContestantButton.setEnabled(false);
+            searchButton.setEnabled(true);
         }
     }
 }
