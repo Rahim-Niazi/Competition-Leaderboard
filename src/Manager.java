@@ -37,5 +37,17 @@ public class Manager
         selectionFrame.setLocationRelativeTo(null);
         selectionFrame.setVisible(true);
     }
-
+    private void openCompetitionGUI(String role)
+    {
+        selectionFrame.dispose();
+        ContestantList model = new ContestantList();
+        model.readContestantsFromCSV("src\\Contestants.csv");
+        User user = new User(role);
+        frontend competitionView = new frontend(model, user);
+        Controller competitionController = new Controller(competitionView, model);
+        competitionView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        competitionView.pack();
+        competitionView.setLocationRelativeTo(null);
+        competitionView.setVisible(true);
+    }
 }
