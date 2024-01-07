@@ -374,4 +374,27 @@ public class frontend extends JFrame {
         }
     }
 
+    private boolean isNonEmptyInteger(String str) {
+        return !str.isEmpty() && isInteger(str);
+    }
+
+    private boolean isAlpha(String str) {
+        return str.matches("^[a-zA-Z ]+$");
+    }
+
+    private boolean isNonEmptyStringWithLetters(String str) {
+        return !str.isEmpty() && isAlpha(str);
+    }
+
+    private boolean isInteger(String str)
+    {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+
+
+    }
 }
