@@ -137,4 +137,40 @@ public class frontend extends JFrame {
             searchButton.setEnabled(true);
         }
     }
+    public void updateContestantTable()
+    {
+        DefaultTableModel tableModel = new DefaultTableModel();
+        tableModel.addColumn("Contestant Number");
+        tableModel.addColumn("Name");
+        tableModel.addColumn("Category");
+        tableModel.addColumn("Level");
+        tableModel.addColumn("Age");
+        tableModel.addColumn("Gender");
+        tableModel.addColumn("Country");
+        tableModel.addColumn("Scores");
+
+        for (Contestant contestant : model.getAllContestants())
+        {
+            Object[] rowData =
+                    {
+                            contestant.getContestantNumber(),
+                            contestant.getName(),
+                            contestant.getCategory(),
+                            contestant.getLevel(),
+                            contestant.getAge(),
+                            contestant.getGender(),
+                            contestant.getCountry(),
+                            Arrays.toString(contestant.getScores())
+                    };
+            tableModel.addRow(rowData);
+        }
+
+        ContestantTable.setModel(tableModel);
+        String filePath = "src\\Contestants.csv";
+        if ("staff".equals(currentUser.getRole()))
+        {
+            model.writeContestantsToCSV(filePath);
+        }
+    }
+
 }
