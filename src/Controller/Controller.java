@@ -23,4 +23,67 @@ public class Controller
         view.getAddContestantButton().addActionListener(new AddContestantButtonListener());
         view.getSearchButton().addActionListener(new SearchButtonListener());
     }
+
+    private class UpdateButtonListener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            view.updateContestantTable();
+        }
+    }
+
+    private class EditButtonListener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            view.editContestantDetails();
+        }
+    }
+
+    private class RemoveButtonListener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            view.removeContestant();
+        }
+    }
+
+    private class ReportButtonListener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            view.generateReport();
+        }
+    }
+
+    private class ShortButtonListener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            view.shortReport();
+        }
+    }
+
+    private class AddContestantButtonListener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            view.addContestantFromForm();
+        }
+    }
+
+    private class SearchButtonListener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            view.searchContestant();
+        }
+    }
 }
