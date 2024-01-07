@@ -92,4 +92,23 @@ public class frontend extends JFrame {
 
         updateContestantTable();
     }
+    public void searchContestant() {
+        try
+        {
+            int ContestantNumberToSearch = Integer.parseInt(searchField.getText());
+            Contestant foundContestant = model.getContestantByNumber(ContestantNumberToSearch);
+            if (foundContestant != null)
+            {
+                searchResultTextArea.setText("Contestant Found:\n" + foundContestant.getFullDetails());
+            }
+            else
+            {
+                searchResultTextArea.setText("Contestant not found.");
+            }
+        }
+        catch (NumberFormatException ex)
+        {
+            JOptionPane.showMessageDialog(this, "Please enter a valid Contestant number.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 }
