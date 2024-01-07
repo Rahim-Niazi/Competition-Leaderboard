@@ -172,5 +172,78 @@ public class frontend extends JFrame {
             model.writeContestantsToCSV(filePath);
         }
     }
+    public void editContestantDetails()
+    {
+
+        if ("Contestant".equals(currentUser.getRole()))
+        {
+            JOptionPane.showMessageDialog(this, "Contestants are not allowed to edit details.", "Access Denied", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int selectedRow = ContestantTable.getSelectedRow();
+        if (selectedRow != -1)
+        {
+            int ContestantNumber = (int) ContestantTable.getValueAt(selectedRow, 0);
+            Contestant contestant = model.getContestantByNumber(ContestantNumber);
+            if (contestant != null)
+            {
+                JTextField nameField = new JTextField(contestant.getName());
+                JComboBox<Contestant.Level> levelComboBox = new JComboBox<>(Contestant.Level.values());
+                levelComboBox.setSelectedItem(contestant.getLevel());
+                JComboBox<Contestant.Category> categoryComboBox = new JComboBox<>(Contestant.Category.values());
+                categoryComboBox.setSelectedItem(contestant.getCategory());
+                JTextField ageField = new JTextField(String.valueOf(contestant.getAge()));
+                JTextField genderField = new JTextField(contestant.getGender());
+                JTextField countryField = new JTextField(contestant.getCountry());
+
+                Object[] message =
+                        {
+                                "Name:", nameField,
+                                "Level:", levelComboBox,
+                                "Category:", categoryComboBox,
+                                "Age:", ageField,
+                                "Gender:", genderField,
+                                "Country:", countryField
+                        };
+
+                int option = JOptionPane.showConfirmDialog(this, message, "Edit Contestant Details", JOptionPane.OK_CANCEL_OPTION);
+
+                if (option == JOptionPane.OK_OPTION)
+                {
+                    try
+                    {
+                        String newName = nameField.getText();
+                        Contestant.Level newLevel = (Contestant.Level) levelComboBox.getSelectedItem();
+                        Contestant.Category newCategory = (Contestant.Category) categoryComboBox.getSelectedItem();
+                        int newAge = Integer.parseInt(ageField.getText());
+                        String newGender = genderField.getText();
+                        String newCountry = countryField.getText();
+
+                        int[] newScores = new int[contestant.getScores().length];
+                        for (int i = 0; i < newScores.length; i++)
+                        {
+                            String scoreStr = JOptionPane.showInputDialog("Enter new score for round " + (i + 1) + ":", contestant.getScores()[i]);
+                            newScores[i] = Integer.parseInt(scoreStr);
+                        }
+
+                        contestant.setName(newName);
+                        contestant.setLevel(newLevel);
+                        contestant.setCategory(newCategory);
+                        contestant.setAge(newAge);
+                        contestant.setGender(newGender);
+                        contestant.setCountry(newCountry);
+                        contestant.setScores(newScores);
+
+                        updateContestantTable();
+                    }
+                    catch (NumberFormatException ex)
+                    {
+                        JOptionPane.showMessageDialog(this, "Please enter a valid age.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+        }
+    }
 
 }
