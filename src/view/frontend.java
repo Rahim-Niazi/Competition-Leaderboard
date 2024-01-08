@@ -46,19 +46,19 @@ public class frontend extends JFrame {
         searchResultTextArea = new JTextArea();
         addContestantButton = new JButton("Add Contestant");
         generateReportButton = new JButton("Generate Final Report");
-        JButton closeButton = new JButton("Close");
+        closeButton = new JButton("Close");
 
 
         setLayout(new BorderLayout());
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout());
-        buttonPanel.add(generateReportButton);
-        buttonPanel.add(updateButton);
+        buttonPanel.add(addContestantButton);
         buttonPanel.add(editButton);
         buttonPanel.add(removeButton);
-        buttonPanel.add(reportButton);
+        buttonPanel.add(updateButton);
         buttonPanel.add(shortButton);
-        buttonPanel.add(addContestantButton);
+        buttonPanel.add(reportButton);
+        buttonPanel.add(generateReportButton);
         buttonPanel.add(searchField);
         buttonPanel.add(searchButton);
         buttonPanel.add(closeButton);
@@ -117,13 +117,15 @@ public class frontend extends JFrame {
         if ("staff".equals(currentUser.getRole()))
         {
             // Staff can access all buttons
-            updateButton.setEnabled(true);
-            editButton.setEnabled(true);
-            removeButton.setEnabled(true);
+            updateButton.setBackground(new Color(255, 255, 153));
+            editButton.setBackground(new Color(255, 255, 153));
+            removeButton.setBackground(new Color(255, 182, 193));
             reportButton.setEnabled(true);
             shortButton.setEnabled(true);
-            addContestantButton.setEnabled(true);
-            searchButton.setEnabled(true);
+            addContestantButton.setBackground(new Color(144, 238, 144));
+            searchButton.setBackground(new Color(144, 238, 144));
+            closeButton.setBackground(new Color(255, 182, 193));
+            generateReportButton.setBackground(new Color(222, 184, 135));
         }
         else if ("Contestant".equals(currentUser.getRole()))
         {
