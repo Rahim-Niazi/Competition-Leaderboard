@@ -395,6 +395,35 @@ public class frontend extends JFrame {
             return false;
         }
 
-
     }
+    public void displayShortDetailsForContestant() {
+        try {
+
+            if ("Contestant".equals(currentUser.getRole())) {
+                JOptionPane.showMessageDialog(this, "Contestants are not allowed to add Contestants.", "Access Denied", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            int ContestantNumberToDisplay = Integer.parseInt(JOptionPane.showInputDialog("Enter Contestant number:"));
+            if (model.isValidContestantNumber(ContestantNumberToDisplay)) {
+                Contestant contestant = model.getContestantByNumber(ContestantNumberToDisplay);
+                JOptionPane.showMessageDialog(this, "Contestant Details:\n" + contestant.getShortDetails(), "Contestant Details", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Invalid Contestant number.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid Contestant number.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void generateFinalReport() {
+        if ("Contestant".equals(currentUser.getRole())) {
+            JOptionPane.showMessageDialog(this, "Contestants are not allowed to add Contestants.", "Access Denied", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        String filePath = "src\\final_report.txt";  // Change this path
+        model.produceFinalReport(filePath);
+        JOptionPane.showMessageDialog(this, "Final report generated successfully!", "Report Generated", JOptionPane.INFORMATION_MESSAGE);
+    }
+
 }
