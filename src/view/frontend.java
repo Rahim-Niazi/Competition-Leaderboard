@@ -433,26 +433,5 @@ public class frontend extends JFrame {
         JOptionPane.showMessageDialog(frontend.this, "Competitor report has been written to " + reportFilePath, "Report Written", JOptionPane.INFORMATION_MESSAGE);
         System.exit(0); // Closes the program
     }
-    public JButton getUpdateButton() {
-        return updateButton;
-    }
-    public JButton getEditButton() {
-        return editButton;
-    }
-    public JButton getRemoveButton() {
-        return removeButton;
-    }
-    public JButton getReportButton() {
-        return reportButton;
-    }
-    public JButton getShortButton() {
-        return shortButton;
-    }
-    public JButton getAddContestantButton() {
-        return addContestantButton;
-    }
-    public JButton getSearchButton() {
-        return searchButton;
-    }
 
 }

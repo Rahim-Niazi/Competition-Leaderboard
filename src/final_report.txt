@@ -1,0 +1,41 @@
+Contestants:
+Contestant Number | Name | Category | Level | Age | Gender | Country | Scores
+1 | John Marshton | JUMPS | PROFESSIONAL | 43 | M | United States | [6, 9, 5, 3, 8]
+2 | Olivia White | MARATHON | BEGINNER | 26 | F | United Kingdom | [5, 7, 3, 1, 9]
+3 | Miguel Hernandez | JAVELIN | ADVANCED | 29 | M | Colombia | [7, 3, 8, 5, 1]
+4 | Amira Farsi | MARATHON | ADVANCED | 31 | F | Oman | [5, 1, 8, 4, 2]
+5 | Ethan Miller | MARATHON | BEGINNER | 33 | M | Australia | [6, 9, 3, 6, 7]
+6 | Jihyun Kim | JUMPS | BEGINNER | 24 | F | South Korea | [5, 2, 7, 4, 8]
+7 | Leila Hassan | JAVELIN | PROFESSIONAL | 30 | F | Nigeria | [5, 9, 8, 2, 1]
+8 | Diego Chavez | JUMPS | ADVANCED | 28 | M | Chile | [3, 2, 8, 9, 8]
+9 | Viktor Ivanov | MARATHON | ADVANCED | 22 | M | Ukraine | [8, 7, 6, 5, 1]
+10 | Maya Gupta | JAVELIN | PROFESSIONAL | 27 | F | India | [8, 6, 9, 9, 5]
+11 | Khaled Ahmed | JUMPS | BEGINNER | 35 | M | Qatar | [6, 3, 1, 9, 7]
+12 | Gabriela Santos | JAVELIN | BEGINNER | 23 | F | Brazil | [6, 7, 9, 8, 9]
+13 | Arturo Ramirez | MARATHON | ADVANCED | 31 | M | Mexico | [5, 8, 3, 9, 4]
+14 | Celeste Martin | JUMPS | PROFESSIONAL | 29 | F | United States | [5, 7, 6, 9, 8]
+15 | Henrik Andersen | JAVELIN | BEGINNER | 36 | M | Sweden | [7, 4, 9, 7, 2]
+16 | Amina Rahman | MARATHON | ADVANCED | 25 | F | Pakistan | [5, 8, 7, 6, 9]
+17 | Isla Scott | JUMPS | PROFESSIONAL | 28 | F | Canada | [6, 9, 5, 4, 7]
+18 | Mia Nguyen | JAVELIN | PROFESSIONAL | 22 | F | Vietnam | [6, 9, 5, 8, 6]
+19 | Andrei Popov | MARATHON | BEGINNER | 33 | M | Romania | [8, 5, 6, 9, 1]
+20 | Juan Carlos Morales | JUMPS | ADVANCED | 21 | Male | Argentina | [9, 5, 4, 8, 9]
+
+Contestant with the highest overall score:
+Contestant Number: 12, Name: Gabriela Santos, Overall Score: 7.80
+
+Summary Statistics:
+Total Contestants: 20
+Average Overall Score: 5.9799999999999995
+Maximum Overall Score: 7.8
+Minimum Overall Score: 4.0
+Frequency Report:
+Score 1: 7 times
+Score 2: 5 times
+Score 3: 7 times
+Score 4: 6 times
+Score 5: 15 times
+Score 6: 13 times
+Score 7: 12 times
+Score 8: 16 times
+Score 9: 19 times
