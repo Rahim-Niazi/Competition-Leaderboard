@@ -425,5 +425,34 @@ public class frontend extends JFrame {
         model.produceFinalReport(filePath);
         JOptionPane.showMessageDialog(this, "Final report generated successfully!", "Report Generated", JOptionPane.INFORMATION_MESSAGE);
     }
+    private void closeProgam()
+    {
+        String reportFilePath = "src/final_report.txt";
+        model.produceFinalReport(reportFilePath); // Writes the competitor report to a text file
+        model.writeContestantsToCSV("src/Contestants.csv"); // Saves the competitors to CSV file
+        JOptionPane.showMessageDialog(frontend.this, "Competitor report has been written to " + reportFilePath, "Report Written", JOptionPane.INFORMATION_MESSAGE);
+        System.exit(0); // Closes the program
+    }
+    public JButton getUpdateButton() {
+        return updateButton;
+    }
+    public JButton getEditButton() {
+        return editButton;
+    }
+    public JButton getRemoveButton() {
+        return removeButton;
+    }
+    public JButton getReportButton() {
+        return reportButton;
+    }
+    public JButton getShortButton() {
+        return shortButton;
+    }
+    public JButton getAddContestantButton() {
+        return addContestantButton;
+    }
+    public JButton getSearchButton() {
+        return searchButton;
+    }
 
 }
